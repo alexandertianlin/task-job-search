@@ -1,13 +1,24 @@
+# Python
 __pycache__/
-*.pyc
-.DS_Store
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# Config with sensitive info
+config/email_targets.json
+
+# Output files (generated)
+outputs/*.pdf
+outputs/*.csv
+outputs/email_send_log.json
+
+# IDE
+.vscode/
+.idea/
 *.swp
 *.swo
-.env
-.venv/
-venv/
-*.log
-.idea/
-.vscode/
-node_modules/
-.codex-task-memory.md
+
+# OS
+.DS_Store
+Thumbs.db
