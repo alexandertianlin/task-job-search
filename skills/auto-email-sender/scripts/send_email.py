@@ -10,7 +10,7 @@ SMTP_SERVER = "smtp.gmail.com"
 SMTP_PORT = 465
 
 def get_password():
-    pwd = password or os.environ.get("GMAIL_APP_PASSWORD") or os.environ.get("EMAIL_PASS")
+    pwd = os.environ.get("GMAIL_APP_PASSWORD") or os.environ.get("EMAIL_PASS")
     if not pwd:
         try: pwd = getpass.getpass("Gmail App Password: ")
         except: pass
@@ -19,29 +19,7 @@ def get_password():
         sys.exit(1)
     return pwd
 
-def _send_smtp(sender, pwd, recipient, msg):
-    """Send via SMTP. Auto-tries SSL(465) then STARTTLS(587)."""
-    import ssl
-    last_err = None
-    for port, use_ssl in [(465, True), (587, False)]:
-        try:
-            ctx = ssl.create_default_context()
-            if use_ssl:
-                with smtplib.SMTP_SSL("smtp.gmail.com", port, context=ctx, timeout=30) as s:
-                    s.login(sender, pwd)
-                    s.sendmail(sender, [recipient], msg.as_string())
-            else:
-                with smtplib.SMTP("smtp.gmail.com", port, timeout=30) as s:
-                    s.starttls(context=ctx)
-                    s.login(sender, pwd)
-                    s.sendmail(sender, [recipient], msg.as_string())
-            return
-        except Exception as e:
-            last_err = e
-            continue
-    raise last_err
-
-def send_email(recipient, subject, body_text, attachment_path=None, password=None):
+def send_email(recipient, subject, body_text, attachment_path=None):
     msg = MIMEMultipart()
     msg["From"] = SENDER
     msg["To"] = recipient
@@ -56,7 +34,10 @@ def send_email(recipient, subject, body_text, attachment_path=None, password=Non
         part.add_header("Content-Disposition", f"attachment; filename="{fname}"")
         msg.attach(part)
     pwd = get_password()
-    _send_smtp(SENDER, pwd, recipient, msg)
+    ctx = ssl.create_default_context()
+    with smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT, context=ctx, timeout=30) as s:
+        s.login(SENDER, pwd)
+        s.sendmail(SENDER, [recipient], msg.as_string())
     print(f"Sent to {recipient}: {subject}")
 
 if __name__ == "__main__":
