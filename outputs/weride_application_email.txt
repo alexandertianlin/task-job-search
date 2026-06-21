@@ -1,0 +1,21 @@
+﻿尊敬的WeRide招聘团队，
+
+您好！
+
+我是田霖，目前在新加坡南洋理工大学（NTU）攻读信号处理与机器学习硕士学位，预计于2026年12月毕业。我通过WeRide官网了解到Perception Engineer的招聘信息，希望能申请该职位。
+
+我在计算机视觉、传感器融合和多模态感知方面有扎实的研究与工程经验：
+- 在NTU DeCLaRe Lab从事VLA（视觉-语言-动作）模型与触觉感知融合研究
+- 在聚触灵动负责手势识别系统，在GCP多GPU上部署6种姿态估计模型
+- 熟悉D435i/Astra Plus多传感器融合、STM32固件开发和Unity集成
+- 有AI Agent和LLM应用开发经验（LangChain、Coze平台）
+
+我的技术栈包括：Python、PyTorch、ONNX/TensorRT、OpenCV、C++、ROS、GCP GPU部署。
+
+我的简历和GitHub（github.com/alexandertianlin）供您参考。
+
+此致
+敬礼
+
+田霖
+alexandertianlin@gmail.com | +86 18515180355

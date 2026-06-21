@@ -38,7 +38,7 @@ def send_email(recipient, subject, body, attachment_path=None):
     print("  Sent!")
 
 if __name__ == "__main__":
-    with open(os.path.join(os.path.dirname(__file__), "weride_application_email.txt"), "r", encoding="utf-8") as f:
+    with open(os.path.join(os.path.dirname(__file__), "weride_application_email_v2.txt"), "r", encoding="utf-8") as f:
         body = f.read()
     resume = "田霖简历_更新版.docx"
     if not os.path.exists(resume):
